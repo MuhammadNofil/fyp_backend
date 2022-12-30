@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
+// const env=require('..')
 
 // Generate and save password hash
 const hashPassword = async (password) => {

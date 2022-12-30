@@ -11,18 +11,20 @@ const {
 const login = async (req, res, next) => {
   try {
     // Remove users password from memory
-    req.user.password = undefined;
+    // req.user.password = undefined;
     const jwtToken = getJwt({
-      email: req.user.email,
+      email: req.body.email,
       rememberMe: req.body.rememberMe,
+      // roles: req.user.roles,
+      // company_id: req.user.company_id,
     });
     const refreshToken = getRefreshToken({
-      id: req.user._id,
-      email: req.user.email,
+      id: req.body._id,
+      email: req.body.email,
     });
     // Create a new user session
     const sessionCreationMessage = await userSessionService.createUserSession(
-      req.user._id,
+      req.body._id,
       refreshToken,
       req.body.rememberMe
     );
@@ -41,7 +43,7 @@ const login = async (req, res, next) => {
         true,
         {
           jwtToken: jwtToken,
-          user: { ...req.user, rememberMe: req.body.rememberMe },
+          // user: { ...req.user.dataValues, rememberMe: req.body.rememberMe },
         },
         null
       )
