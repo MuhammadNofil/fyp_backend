@@ -61,7 +61,11 @@ const loginFailed = (req, res, next) => {
   );
   return;
 };
+const loginwithgoogle=async(req,res)=>{
+
+}
 module.exports = {
   login,
   loginFailed,
+  loginwithgoogle
 };

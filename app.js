@@ -7,10 +7,11 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 require("dotenv").config();
+require('./passport/googlestrategy')
 // Router
 const userRouter = require("./routes/users.route");
 const sessionRouter = require("./routes/session.route");
-
+app.set('view engine',"ejs")
 // server and db connection
 server.initserver()
 
@@ -27,6 +28,6 @@ app.use(passport.initialize());
 
 // routes
 app.listen(PORT,console.log(`server is running${PORT}`));
-app.get("/", (req, res) => res.send("working:"));
+app.get("/", (req, res) => res.render("pages/index"));
 app.use("/users/", userRouter);
 app.use("/user/session/", sessionRouter);

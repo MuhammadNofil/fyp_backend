@@ -39,6 +39,9 @@ const comparePassword = async (password, passwordToCompareWith) => {
   const verifyUserOnLogin = passport.authorize("local", {
     failureRedirect: "/user/session/loginFailed",
   });
+  const googleverification=passport.authenticate('google',{
+    scope:['profile','email']
+  })
 //   const verifyUserOnLogin =passport.authenticate('local', { failureRedirect: '/login' }),
 module.exports = {
     verifyUserOnLogin,
@@ -46,4 +49,5 @@ module.exports = {
     comparePassword,
     getJwt,
     getRefreshToken,
+    googleverification
 }
